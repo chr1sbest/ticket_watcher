@@ -4,7 +4,10 @@ class KeyStore:
     def set():
         return
 
-class LambdaKeyStore(KeyStore):
+class DynamoKeyStore(KeyStore):
+    def __init__():
+        return
+
     def get(key):
         return "testing"
     def set(key, value):

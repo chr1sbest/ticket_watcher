@@ -2,7 +2,7 @@ import boto3
 import os
 
 # keystore required to store state and track diffs over time
-keystore = LambdaKeyStore()
+keystore = DynamoKeyStore()
 
 # parsers read HTML to look for specific information
 parsers = [ChappelleParser(), SummerLeagueParser()]
