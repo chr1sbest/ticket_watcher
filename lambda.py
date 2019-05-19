@@ -1,6 +1,8 @@
 import boto3
 import os
 
+from parsers import ChappelleParser, SummerLeagueParser
+
 # keystore required to store state and track diffs over time
 keystore = DynamoKeyStore()
 
