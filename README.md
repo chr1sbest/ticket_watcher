@@ -1,4 +1,4 @@
-# Lambda SMS to Monitor Ticket Sales
+# Lambda to Monitor Ticket Availability and Push SMS
 
 ## Components
 1) AWS Lambda to run on cron (free)
