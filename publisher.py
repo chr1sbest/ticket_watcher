@@ -34,7 +34,7 @@ class SNS_Publisher(Publisher):
     # Don't want to publish more than once per hour
     def __should_rate_limit(self, name, now):
         stored_time = self.keystore.get(name)['time']
-        last = now.strptime(date_format)
+        last = stored_time.strptime(date_format)
         if last + self.rate_limit > now:
             return True
         return False
