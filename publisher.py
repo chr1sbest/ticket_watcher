@@ -13,38 +13,37 @@ class Publisher:
 class SNS_Publisher(Publisher):
     rate_limit = 1 * time.hour
 
-    def __init__(keystore):
-        sns_env = os.environ['SNS_TOPIC']
-        self.sns_topic = boto3.resource('sns').Topic(sns_env)
+    def __init__(self, keystore):
         self.keystore = keystore
 
-    def publish(name, output)
+    def publish(self, name, output)
         if __should_rate_limit(name):
             return
-        message = self.__format_output(output, name)
-        self.sns_topic.publish(Message=message)
-        self.keystore.set(name, datetime.datetime.now()) ## TODO
+        sns_topic = boto3.resource('sns').Topic(name)
+        message = self.__format_output(name, output)
+        sns_topic.publish(Message=message)
+        self.keystore.set(name, {'time': datetime.datetime.now()})
         return
 
-    def __format_output(output, name):
-        return "testing"
+    def __format_output(self, name, output):
+        return "Change detected in: %s".format(name)
 
     # Don't want to publish more than once per hour
-    def __should_rate_limit(name):
+    def __should_rate_limit(self, name):
         last = self.keystore.get(name)
         now = datetime.datetime.now()
-        if now - last < self.rate_limit:
+        if now - last['time'] < self.rate_limit:
             return True
         return False
 
 
 ## Publisher that writes to CloudWatch logs
 class Logger(Publisher):
-    def __init__():
+    def __init__(self):
         self.logger = logging.getLogger()
         self.message_length = 20
         logger.setLevel(logging.INFO)
 
-    def publish(name, output)
+    def publish(self, name, output)
         logger.info("%s: %s".format(name, output[:self.message_length]))
         return
