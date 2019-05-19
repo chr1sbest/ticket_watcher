@@ -15,3 +15,9 @@ class SummerLeagueParser(Parser):
         for event in events:
             event_array.append(str(event))
         return ''.join(event_array)
+
+"""
+Example output:
+
+<li class="nopadtop eventinfo">\r\n\t\t\t\t\t\t\t\t\t\t\t\tJuly 05, 2019 - TIME TBD\t\t\t\t\t\t\t\t\t\t  </li><li class="eventinfo">\r\n\t\t\t\t\t\t\t\t\t\t\t\tJuly 06, 2019 - TIME TBD\t\t\t\t\t\t\t\t\t\t  </li><li class="eventinfo">\r\n\t\t\t\t\t\t\t\t\t\t\t\tJuly 07, 2019 - TIME TBD\t\t\t\t\t\t\t\t\t\t  </li><li class="eventinfo">\r\n\t\t\t\t\t\t\t\t\t\t\t\tJuly 08, 2019 - TIME TBD\t\t\t\t\t\t\t\t\t\t  </li><li class="eventinfo">\r\n\t\t\t\t\t\t\t\t\t\t\t\tJuly 09, 2019 - TIME TBD\t\t\t\t\t\t\t\t\t\t  </li><li class="eventinfo">\r\n\t\t\t\t\t\t\t\t\t\t\t\tJuly 10, 2019 - TIME TBD\t\t\t\t\t\t\t\t\t\t  </li><li class="eventinfo">\r\n\t\t\t\t\t\t\t\t\t\t\t\tJuly 11, 2019 - TIME TBD\t\t\t\t\t\t\t\t\t\t  </li><li class="eventinfo">\r\n\t\t\t\t\t\t\t\t\t\t\t\tJuly 12, 2019 - TIME TBD\t\t\t\t\t\t\t\t\t\t  </li><li class="eventinfo">\r\n\t\t\t\t\t\t\t\t\t\t\t\tJuly 13, 2019 - TIME TBD\t\t\t\t\t\t\t\t\t\t  </li><li class="eventinfo">\r\n\t\t\t\t\t\t\t\t\t\t\t\tJuly 14, 2019 - TIME TBD\t\t\t\t\t\t\t\t\t\t  </li><li class="noborder eventinfo">\r\n\t\t\t\t\t\t\t\t\t\t\t\tJuly 15, 2019 - TIME TBD\t\t\t\t\t\t\t\t\t\t  </li>
+"""
