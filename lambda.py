@@ -27,12 +27,12 @@ def lambda_handler(event, context):
 
         # Check for diff between previous run and current & exit if none
         new_output = parser.parse()
-        previous_output = keystore.get(key)
+        previous_output = keystore.get(name)
         if new_output == previous_output['text']:
             return
 
         # Publish to each publisher if new diff
-        keystore.store(key, {'text': new_output})
+        keystore.store(name, {'text': new_output})
         for publisher in publishers:
             publisher.Publish(name, new_output)
     return
