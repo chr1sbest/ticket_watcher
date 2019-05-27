@@ -1,6 +1,7 @@
 clean:
 	rm -rf build build.zip
 	rm -rf __pycache__
+	find . -name "*.pyc" -exec rm -f {} \;
 
 fetch-dependencies:
 	mkdir -p bin/
