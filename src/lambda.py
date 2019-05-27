@@ -2,7 +2,8 @@ import boto3
 import os
 
 from parsers.chappelle_parser import ChappelleParser
-from parsers.summer_league_parser import SummerLeagueParser
+from parsers.unlv_parser import SummerLeagueUNLVParser
+from parsers.evenue_parser import SummerLeagueEvenueParser
 from keystore import DynamoKeyStore
 from publisher import Logger, SNS_Publisher
 
@@ -12,7 +13,8 @@ keystore = DynamoKeyStore()
 # parsers read HTML to look for specific information
 parsers = [
         ChappelleParser(),
-        SummerLeagueParser()
+        SummerLeagueUNLVParser(),
+        SummerLeagueEvenueParser()
 ]
 
 # publishers write to consumers that want to hear about diffs
