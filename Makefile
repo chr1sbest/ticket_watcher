@@ -35,4 +35,3 @@ build-lambda-package: clean
 
 upload-lambda: build-lambda-package
 	aws s3 cp build.zip s3://lambda-sender/build.zip
-	clean
