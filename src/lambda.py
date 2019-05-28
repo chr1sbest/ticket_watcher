@@ -1,3 +1,4 @@
+import boto3
 from botocore.errorfactory import ResourceNotFoundException
 
 from src.parsers.chappelle_parser import ChappelleParser
