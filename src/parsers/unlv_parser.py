@@ -1,13 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
-from base_parser import Parser
-
-unlv_url = "https://www.unlvtickets.com/eventInfo/spe/719/2019-nba-summer-league/"
 
 ## SummerLeagueParser looks for event updates on the UNLV Page
-class SummerLeagueUNLVParser(Parser):
+class SummerLeagueUNLVParser():
+    url = "https://www.unlvtickets.com/eventInfo/spe/719/2019-nba-summer-league/"
+
     def parse(self):
-        result = requests.get(unlv_url)
+        result = requests.get(self.url)
         soup = BeautifulSoup(result.content)
         performances = soup.find_all("div", {"id": "performances"})
         events = performances[0].find_all("li", {"class": "eventinfo"})

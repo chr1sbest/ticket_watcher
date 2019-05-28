@@ -32,3 +32,11 @@ build-lambda-package: clean
 	cd build; zip -9qr build.zip .
 	cp build/build.zip .
 	rm -rf build
+
+upload-lambda:
+	aws lambda update-function-code \
+	--function-name sender_lambda \
+	--s3-bucket awesome-lambda-code \
+	--s3-key deployment_bundle.zip \
+	--profile my_profile_name \
+	--publish

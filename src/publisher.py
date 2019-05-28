@@ -17,19 +17,22 @@ class SNS_Publisher(Publisher):
     def __init__(self, keystore):
         self.keystore = keystore
 
-    def publish(self, name, output):
+    def publish(self, parser, output):
+        name = parser.__class__.__name__
+        url = parser.url
+
         now = datetime.datetime.now()
         if __should_rate_limit(name, now):
             return
         sns_topic = boto3.resource('sns').Topic(name)
-        message = self.__format_output(name, output)
+        message = self.__format_output(name, url)
         sns_topic.publish(Message=message)
         formatted = now.strftime(date_format)
         self.keystore.set(name, {'time': formatted})
         return
 
-    def __format_output(self, name, output):
-        return "Change detected in: %s".format(name)
+    def __format_output(self, name, url):
+        return "Change detected in: %s. Visit %s".format(name, url)
 
     # Don't want to publish more than once per hour
     def __should_rate_limit(self, name, now):
