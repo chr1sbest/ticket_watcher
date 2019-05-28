@@ -1,5 +1,4 @@
 import boto3
-from botocore.errorfactory import ResourceNotFoundException
 
 from src.parsers.chappelle_parser import ChappelleParser
 from src.parsers.unlv_parser import SummerLeagueUNLVParser
@@ -34,8 +33,10 @@ def lambda_handler(event, context):
             previous_output = keystore.get(name)
             if new_output == previous_output['text']:
                 return
-        except ResourceNotFoundException:
-            pass
+        except Exception as e:
+            if e.response['Error']['Code'] == "ResourceNotFoundException":
+                pass
+            raise e
 
         # Publish to each publisher if new diff
         keystore.set(name, {'text': new_output})
