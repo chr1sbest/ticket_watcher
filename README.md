@@ -1,4 +1,8 @@
 # Ticket Monitor
+## Background
+I want to get notified as soon as specific tickets become available. Some website don't have a good notification system, and I'm not good at checking my emails either way.
+
+Additionally, most ticketing websites have anti-scraping javascript that keeps you from parsing raw HTML. Have to instantiate a headless browser to execute the javascript and then parse the newly rendered HTML.
 
 ## Goal
 - Scrape ticket websites using headless Chrome
