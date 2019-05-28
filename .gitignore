@@ -2,3 +2,5 @@
 todo.txt
 build
 build.zip
+bin/*
+lib/*
