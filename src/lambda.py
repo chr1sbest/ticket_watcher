@@ -1,3 +1,5 @@
+import boto3
+
 from src.parsers.chappelle_parser import ChappelleParser
 from src.parsers.unlv_parser import SummerLeagueUNLVParser
 from src.parsers.evenue_parser import SummerLeagueEvenueParser
@@ -21,6 +23,9 @@ publishers = [
         SNS_Publisher(keystore)
 ]
 
+# DynamoDB Client
+not_found = boto3.client('dynamodb').exceptions.ResourceNotFoundException
+
 def lambda_handler(event, context):
     for parser in parsers:
         name = parser.__class__.__name__
@@ -31,11 +36,11 @@ def lambda_handler(event, context):
             previous_output = keystore.get(name)
             if new_output == previous_output['text']:
                 return
-        except keystore.exceptions.ResourceNotFoundException:
+        except not_found:
             pass
 
         # Publish to each publisher if new diff
-        keystore.store(name, {'text': new_output})
+        keystore.set(name, {'text': new_output})
         for publisher in publishers:
             publisher.Publish(parser, new_output)
     return
